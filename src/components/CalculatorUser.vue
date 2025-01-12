@@ -65,6 +65,11 @@ const onSubmit = handleSubmit(
     };
     await quotaStore.addQuota(dataQuotation);
 
+    //Hacer que haga scroll hacia abajo hasta lo ultimo de la pagina desde de medio segundo
+
+    setTimeout(() => {
+      document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+    }, 500);
 
   }
 );
@@ -92,7 +97,8 @@ onMounted(async () => {
 
   <div class="flex justify-center items-center h-full py-10">
     <div class="max-w-xl w-full ">
-      <h2
+<div class="h-screen">
+  <h2
         class="text-4xl text-center py- font-extrabold leading-10 tracking-tight text-gray-800 sm:text-5xl sm:leading-none md:text-5xl">
         Cotiza tu producto
       </h2>
@@ -180,10 +186,12 @@ onMounted(async () => {
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           @click.prevent="onSubmit">Calcular</button>
       </form>
+</div>
 
 
 
-      <div class="my-10" v-if="quotaStore.dataQuota.clientModel">
+      <div>
+        <div class="my-10" id="result" v-if="quotaStore.dataQuota.clientModel">
         <div class="flow-root rounded-lg border border-gray-100 py-3 shadow-sm">
           <dl class="-my-3 divide-y divide-gray-100 text-sm">
             <div class="gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
@@ -264,6 +272,7 @@ onMounted(async () => {
             </div>
           </dl>
         </div>
+      </div>
       </div>
     </div>
   </div>

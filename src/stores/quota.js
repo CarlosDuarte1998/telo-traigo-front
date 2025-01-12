@@ -26,6 +26,11 @@ export const useQuotaStore = defineStore({
         this.dataQuota = response.data;
       },
 
+     async deleteQuota(id) {
+        await axios.delete(`/quota/${id}`);
+        this.getQuota();
+      }
+
     },
 
 })

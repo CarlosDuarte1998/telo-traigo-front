@@ -25,7 +25,12 @@ export const useProductsStore = defineStore({
           let product = this.typeProducts.find(product => product.id === id);
           this.percentTotal = product.porcentajeFlete+product.porcentajeGastosImportacion+product.porcentajeSeguro+product.porcentajeImpuestos;
           return product;
-        }
+        },
+        async deleteProduct(id) {
+            await axios.delete(`/quota/${id}`);
+            this.getProducts();
+        },
+
     },
 
 })

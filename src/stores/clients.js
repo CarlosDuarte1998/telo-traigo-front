@@ -26,6 +26,13 @@ export const useClientStore = defineStore({
           this.dataClient.id = response.data.id;
         },
 
+
+        async deleteClient(id) {
+          console.log(JSON.stringify(id));
+          await axios.delete(`client/${id}`);
+          this.getClients();
+        }
+
     },
 
 })

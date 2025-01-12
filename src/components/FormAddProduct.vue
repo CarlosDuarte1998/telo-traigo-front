@@ -44,7 +44,7 @@ const onSubmit = handleSubmit(
       porcentajeSeguro: parseFloat(porceSeguro.value)/100,
       porcentajeImpuestos: parseFloat(porceImport.value)/100,
     });
-    
+
   });
 
 
@@ -110,12 +110,12 @@ const onSubmit = handleSubmit(
             </span>
           </div>
         </div>
-        <button type="submit"
+        <div class="flex gap-3"><button type="submit"
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center   "
           @click.prevent="onSubmit">Guardar datos</button>
           <button type="submit"
           class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center   "
-          @click.prevent="productStore.showButtonAdd=false">Cerrar</button>
+          @click.prevent="productStore.showButtonAdd=false">Cerrar</button></div>
       </form>
   </div>
 </template>
