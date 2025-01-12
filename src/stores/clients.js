@@ -1,14 +1,21 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
+
 export const useClientStore = defineStore({
     id: 'client',
     state: () => ({
         client: {
         },
         dataClient: [],
+        allClients: [],
     }),
     actions: {
+      async getClients() {
+        const response = await axios.get('/client', { headers: { 'Content-Type': 'application/json' } });
+       //ordenar de forma descendente
+        this.allClients = response.data.sort((a, b) => b.id - a.id);
+      },
         async addClient(client) {
           const data = {
             "nombre": client.nombre,

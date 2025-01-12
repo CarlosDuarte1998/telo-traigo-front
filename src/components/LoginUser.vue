@@ -39,6 +39,9 @@ const onSubmit = handleSubmit(
   <div class="h-screen flex justify-center items-center ">
     <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-lg text-center">
+      <div class="flex justify-center items-center">
+        <img src="/favicon.ico" alt="logo" class=" w-20" />
+      </div>
       <h1 class="text-2xl font-bold sm:text-3xl">Compra lo quieras <br>
         <span class="text-5xl uppercase">¡nosotros te lo llevamos!</span></h1>
 

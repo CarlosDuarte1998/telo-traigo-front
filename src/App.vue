@@ -2,6 +2,8 @@
 import { useProductsStore } from '@/stores/products';
 import { onMounted } from 'vue';
 
+
+
 const productsStore = useProductsStore();
 
 onMounted(async () => {

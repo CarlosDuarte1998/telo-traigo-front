@@ -15,6 +15,16 @@ const router = createRouter({
       name: 'calculadora',
       component: () => import('../views/CalculatorView.vue'),
     },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/AdminView.vue'),
+    },
+    {
+      path: '/admin/dashboard',
+      name: 'dash',
+      component: () => import('../views/DashboardView.vue'),
+    },
 
 
   ],

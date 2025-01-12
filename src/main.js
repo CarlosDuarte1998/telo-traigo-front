@@ -1,5 +1,6 @@
 import './assets/styles.css'
 import './axios'
+import 'sweetalert2/dist/sweetalert2.min.css';
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 

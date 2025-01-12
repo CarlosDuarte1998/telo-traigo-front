@@ -10,11 +10,13 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@studio-freight/lenis": "^1.0.42",
     "axios": "^1.7.9",
     "pinia": "^2.3.0",
     "vee-validate": "^4.15.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
+    "vue-sweetalert2": "^5.0.11",
     "yup": "^1.6.1"
   },
   "devDependencies": {

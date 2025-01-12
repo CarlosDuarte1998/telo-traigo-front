@@ -4,10 +4,10 @@ import * as yup from 'yup';
 
 import { useProductsStore } from '@/stores/products';
 import { useClientStore } from '@/stores/clients';
-import { useQuotaStore } from '@/stores/Quota';
+import { useQuotaStore } from '@/stores/quota';
 import { onMounted } from 'vue';
 import router from '@/router';
-let showDetails = false;
+
 
 const productsStore = useProductsStore();
 const clientStore = useClientStore();
@@ -46,7 +46,6 @@ const onSubmit = handleSubmit(
       nombre: first_name.value + ' ' + last_name.value,
       correoElectronico: email.value,
     };
-    showDetails = true;
     await clientStore.addClient(data);
     const dataQuotation = {
       clientModel: {
@@ -66,6 +65,7 @@ const onSubmit = handleSubmit(
     };
     await quotaStore.addQuota(dataQuotation);
 
+
   }
 );
 
@@ -81,6 +81,7 @@ onMounted(async () => {
 
 
 
+
 </script>
 
 <template>
@@ -91,6 +92,16 @@ onMounted(async () => {
 
   <div class="flex justify-center items-center h-full py-10">
     <div class="max-w-xl w-full ">
+      <h2
+        class="text-4xl text-center py- font-extrabold leading-10 tracking-tight text-gray-800 sm:text-5xl sm:leading-none md:text-5xl">
+        Cotiza tu producto
+      </h2>
+
+      <div class="mt-10 mb-5">
+        <p class="mt-3 text-base text-gray-500 ">
+          Ingresa los datos del producto que deseas importar y te daremos una cotización.
+        </p>
+      </div>
       <form>
         <div class="grid gap-6 mb-6 md:grid-cols-2">
           <div>
@@ -172,46 +183,51 @@ onMounted(async () => {
 
 
 
-        <div class="mt-10" v-if="quotaStore.dataQuota.clientModel">
-          <div class="flow-root rounded-lg border border-gray-100 py-3 shadow-sm">
+      <div class="my-10" v-if="quotaStore.dataQuota.clientModel">
+        <div class="flow-root rounded-lg border border-gray-100 py-3 shadow-sm">
           <dl class="-my-3 divide-y divide-gray-100 text-sm">
             <div class="gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-              <dt class=" text-gray-900 text-center text-lg font-bold">Cotización por importación de productos con ¡Te Lo Traigo!</dt>
+              <dt class=" text-gray-900 text-center text-lg font-bold">Cotización por importación de productos con ¡Te
+                Lo Traigo!</dt>
             </div>
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
               <dt class="font-medium text-gray-900">Nombre</dt>
-              <dd class="text-gray-700 sm:col-span-2">{{ first_name +' '+ last_name }}</dd>
+              <dd class="text-gray-700 sm:col-span-2">{{ first_name + ' ' + last_name }}</dd>
             </div>
 
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
               <dt class="font-medium text-gray-900">Correo electrónico</dt>
-              <dd v-if=" quotaStore.dataQuota.clientModel" class="text-gray-700 sm:col-span-2">
+              <dd v-if="quotaStore.dataQuota.clientModel" class="text-gray-700 sm:col-span-2">
                 {{ quotaStore.dataQuota.clientModel.correoElectronico }}
               </dd>
             </div>
 
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
               <dt class="font-medium text-gray-900">Tipo de producto</dt>
-              <dd class="text-gray-700 sm:col-span-2" v-if="quotaStore.dataQuota.tipoProducto">{{ quotaStore.dataQuota.tipoProducto.nombre }}</dd>
+              <dd class="text-gray-700 sm:col-span-2" v-if="quotaStore.dataQuota.tipoProducto">{{
+                quotaStore.dataQuota.tipoProducto.nombre }}</dd>
             </div>
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
               <dt class="font-medium text-gray-900">Peso del producto</dt>
-              <dd class="text-gray-700 sm:col-span-2 " v-if="quotaStore.dataQuota.peso">{{ quotaStore.dataQuota.peso }} libras</dd>
+              <dd class="text-gray-700 sm:col-span-2 " v-if="quotaStore.dataQuota.peso">{{ quotaStore.dataQuota.peso }}
+                libras</dd>
             </div>
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
               <dt class="font-medium text-gray-900">Costo del producto</dt>
-              <dd class="text-gray-700 sm:col-span-2" v-if="quotaStore.dataQuota.costoProducto">{{ quotaStore.dataQuota.costoProducto }}</dd>
+              <dd class="text-gray-700 sm:col-span-2" v-if="quotaStore.dataQuota.costoProducto">{{
+                quotaStore.dataQuota.costoProducto }}</dd>
             </div>
 
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
               <dt class="font-medium text-gray-900">Flete</dt>
-              <dd class="text-gray-700 sm:col-span-2"  v-if="quotaStore.dataQuota.flete">${{ quotaStore.dataQuota.flete }}</dd>
+              <dd class="text-gray-700 sm:col-span-2" v-if="quotaStore.dataQuota.flete">${{ quotaStore.dataQuota.flete
+                }}</dd>
             </div>
 
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
               <dt class="font-medium text-gray-900">Gasto de importación</dt>
               <dd class="text-gray-700 sm:col-span-2" v-if="quotaStore.dataQuota.gastosImportacion">
-                ${{ quotaStore.dataQuota.gastosImportacion}}
+                ${{ quotaStore.dataQuota.gastosImportacion }}
               </dd>
 
             </div>
@@ -248,9 +264,7 @@ onMounted(async () => {
             </div>
           </dl>
         </div>
-        </div>
-
-
+      </div>
     </div>
   </div>
 

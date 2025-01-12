@@ -6,16 +6,19 @@ export const useQuotaStore = defineStore({
     state: () => ({
         dataQuota: {
         },
+        allQuota: [],
     }),
     actions: {
       async getQuota() {
         const response = await axios.get('/quota', { headers: { 'Content-Type': 'application/json' } });
-        this.client = response.data;
+       //Ordenar de forma descendente
+        this.allQuota = response.data.sort((a, b) => b.id - a.id);
       },
 
       async addQuota(quota) {
         const response =  await axios.post('/quota', JSON.stringify(quota), { headers: { 'Content-Type': 'application/json' } });
         this.showQuota(response.data.id);
+        this.getQuota();
       },
 
       async showQuota(id) {

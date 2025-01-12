@@ -7,11 +7,15 @@ export const useProductsStore = defineStore({
     state: () => ({
         typeProducts: [],
         percentTotal: 0,
+        allProducts: [],
+        showButtonAdd: false,
     }),
     actions: {
         async getProducts() {
             const response = await axios.get('/product');
             this.typeProducts = response.data;
+            //ordenar de DESCENDENTE
+            this.allProducts = response.data.sort((a, b) => b.id - a.id);
         },
         async addProduct(product) {
             await axios.post('/product', product);
