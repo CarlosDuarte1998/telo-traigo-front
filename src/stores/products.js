@@ -6,6 +6,7 @@ export const useProductsStore = defineStore({
     id: 'products',
     state: () => ({
         typeProducts: [],
+        percentTotal: 0,
     }),
     actions: {
         async getProducts() {
@@ -16,6 +17,11 @@ export const useProductsStore = defineStore({
             await axios.post('/product', product);
             this.getProducts();
         },
+        showProduct(id) {
+          let product = this.typeProducts.find(product => product.id === id);
+          this.percentTotal = product.porcentajeFlete+product.porcentajeGastosImportacion+product.porcentajeSeguro+product.porcentajeImpuestos;
+          return product;
+        }
     },
 
 })

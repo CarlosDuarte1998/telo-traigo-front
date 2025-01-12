@@ -14,10 +14,11 @@ export const useClientStore = defineStore({
             "nombre": client.nombre,
             "correoElectronico": client.correoElectronico,
           }
-          const response =  await axios.post('/client', JSON.stringify(data), { headers: { 'Content-Type': 'application/json' } });
+          const response =  await axios.post('/client', JSON.stringify(data), { headers: { 'Content-Type': 'application/json ; charset=utf-8' } });
           this.client = response.data;
+          this.dataClient.id = response.data.id;
         },
-        
+
     },
 
 })
