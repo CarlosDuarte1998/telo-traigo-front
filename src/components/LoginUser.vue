@@ -2,6 +2,9 @@
 import router from '@/router';
 import { useForm, configure } from 'vee-validate';
 import * as yup from 'yup';
+import { useClientStore } from '@/stores/clients';
+
+const clientStore = useClientStore();
 
 const { errors, defineField, handleSubmit } = useForm({
     validationSchema: yup.object({
@@ -24,6 +27,7 @@ const [email, emailMeta] = defineField('email');
 const onSubmit = handleSubmit(
     async () => {
       router.push('/calculadora');
+      clientStore.dataClient.email = email.value;
     }
 );
 
