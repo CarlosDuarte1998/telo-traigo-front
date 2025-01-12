@@ -1,11 +1,15 @@
 <script setup>
 import LoginUser from '@/components/LoginUser.vue';
-
-
 </script>
 
 <template>
   <main>
-    <LoginUser />
+
+      <LoginUser />
+
   </main>
 </template>
+
+<style scoped>
+
+</style>

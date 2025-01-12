@@ -1,4 +1,33 @@
 <script setup>
+import router from '@/router';
+import { useForm, configure } from 'vee-validate';
+import * as yup from 'yup';
+
+const { errors, defineField, handleSubmit } = useForm({
+    validationSchema: yup.object({
+        email: yup.string().email('Ingrese una dirección valida').required('El correo es requerido'),
+    }),
+});
+
+
+configure({
+    validateOnChange: true,
+    validateOnBlur: true,
+    validateOnInput: true,
+    validateOnModelUpdate: false,
+});
+
+
+const [email, emailMeta] = defineField('email');
+
+
+const onSubmit = handleSubmit(
+    async () => {
+      router.push('/calculadora');
+    }
+);
+
+
 
 </script>
 
@@ -22,7 +51,8 @@
           <input
             type="email"
             class="w-full rounded-lg border-gray-400 p-4 pe-12 text-lg font-bold shadow-lg"
-            placeholder="Enter email"
+            placeholder="correo@telotraigo.com"
+            v-bind="emailMeta" v-model="email"
           />
 
           <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
@@ -42,18 +72,28 @@
             </svg>
           </span>
         </div>
+        <div>
+          <span v-if="errors">
+            <p class="text-red-500 text-lg font-medium">{{ errors.email }}</p>
+          </span>
+        </div>
       </div>
 
 
 
-      <div class="flex items-center justify-center ">
+      <div class="flex flex-col items-center justify-center ">
 
         <button
           type="submit"
           class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm mt-5 font-medium text-white"
+          @click.prevent="onSubmit"
           >
           Siguiente paso
         </button>
+
+
+
+
       </div>
     </form>
   </div>
